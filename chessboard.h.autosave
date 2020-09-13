@@ -29,6 +29,7 @@ public:
     bool IsDeadGame();//是否和棋
     void End(int);//产生赢家，结束本轮游戏
     void setSchema(int);//设定模式
+    void robot(int);
 
 signals:
     void mySignal1();//回到主界面

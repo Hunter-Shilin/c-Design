@@ -48,8 +48,6 @@ void ChessBoard::paintEvent(QPaintEvent *) {
         p.drawLine(startX, startY + i*gridH, startX + 20*gridW, startY + i*gridH);
         //upright
         p.drawLine(startX + i*gridW, startY, startX + i*gridW, startY + 20*gridH);
-
-        //cout << i << " " << " " << j;
     }
 
     //画棋子
@@ -74,14 +72,13 @@ void ChessBoard::paintEvent(QPaintEvent *) {
                          QPixmap(":/new/prefix1/image2/white.png"));
         }
     }
-//    cout << IsWin(*(v.end()-1));
     auto it = *(v.end()-1);
     if(IsWin(it) == true) {
         End(it.kind);
         //cout<<it.kind;
     }
     else {
-        if(cas == 441) {
+        if(cas == 441) {//棋盘被覆盖满，双方和棋
             on_pushButton_3_clicked();
         }
     }
@@ -91,10 +88,6 @@ void ChessBoard::paintEvent(QPaintEvent *) {
 bool ChessBoard::IsWin(node t) {//当前下的棋子判断是否有赢家产生
     //1->black   0->white
     int x = t.x, y = t.y;
-//    cout<<"x :"<<x<<" y :"<<y;
-
-
-
     //horizontal
     for(int i = 0; i < 6; i++) {
         if(x-i >= 0 && x-i+5 <= 20 &&
@@ -198,7 +191,6 @@ void ChessBoard::End(int flag) {
 
 
 void ChessBoard::Illegal() {//下棋操作非法
-
     QMessageBox::about(this, "Tips", "此下棋操作有误，请重新选落棋点");
 }
 
@@ -271,4 +263,18 @@ void ChessBoard::on_pushButton_4_clicked()
         QMessageBox::about(this, "Game Over", "白棋方认输，游戏结束，黑棋方胜");
     }
     emit mySignal1();
+}
+
+void ChessBoard::robot(int kind) {
+    int x, y;
+    for(int i = 0; i < 21; i++) {
+        int sum = 0, f = 1;
+        for(int j = 0; j < 21; j++) {
+            if(IsEmpty[i][j] && IsEmpty[i][j]%2 == kind) {
+                
+            }
+        }
+    }
+    
+    
 }
